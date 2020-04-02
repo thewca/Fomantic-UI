@@ -1,0 +1,58 @@
+/*******************************
+         Site Settings
+*******************************/
+
+/*-------------------
+       Fonts
+--------------------*/
+@wcaFontPath       : '../../themes/wca/assets';
+@fontName          : 'Roboto';
+@fontSmoothing     : antialiased;
+@importGoogleFonts : false;
+
+
+/*-------------------
+      Base Sizes
+--------------------*/
+
+/* This is the single variable that controls them all */
+@emSize   : 14px;
+
+
+/*--------------
+  Page Heading
+---------------*/
+
+@h1 : unit((32 / 14), rem);
+@h1 : unit((26 / 14), rem);
+
+
+/*-------------------
+       Links
+--------------------*/
+
+@linkColor           : #E64503;
+@linkUnderline       : none;
+
+
+/*-------------------
+      Site Colors
+--------------------*/
+
+/*---  Colors  ---*/
+@red              : #D33E43;
+@orange           : #F2711C;
+@yellow           : #FECE23;
+@olive            : #B5CC18;
+@green            : #21BA45;
+@teal             : #00B5AD;
+@blue             : #375E97;
+@violet           : #6435C9;
+@purple           : #A333C8;
+@pink             : #E03997;
+@brown            : #A5673F;
+@grey             : #767676;
+@black            : #1B1C1D;
+
+
+
