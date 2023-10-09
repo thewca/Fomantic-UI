@@ -1083,7 +1083,7 @@
                         // refresh selector cache
                         (instance || module).refresh();
                     },
-                    field: function (identifier, strict) {
+                    field: function (identifier, strict, ignoreMissing) {
                         module.verbose('Finding field with identifier', identifier);
                         identifier = module.escape.string(identifier);
                         var t;
@@ -1103,7 +1103,9 @@
                         if (t.length > 0) {
                             return t;
                         }
-                        module.error(error.noField.replace('{identifier}', identifier));
+                        if (!ignoreMissing) {
+                            module.error(error.noField.replace('{identifier}', identifier));
+                        }
 
                         return strict ? $() : $('<input/>');
                     },
@@ -1281,10 +1283,10 @@
 
                 has: {
 
-                    field: function (identifier) {
+                    field: function (identifier, ignoreMissing) {
                         module.verbose('Checking for existence of a field with identifier', identifier);
 
-                        return module.get.field(identifier, true).length > 0;
+                        return module.get.field(identifier, true, ignoreMissing).length > 0;
                     },
 
                 },
@@ -1484,7 +1486,7 @@
                         }
                         if (rule === undefined) {
                             module.debug('Removed all rules');
-                            if (module.has.field(field)) {
+                            if (module.has.field(field, true)) {
                                 validation[field].rules = [];
                             } else {
                                 delete validation[field];
@@ -1685,7 +1687,7 @@
                         module.debug('Enabling auto check on required fields');
                         if (validation) {
                             $.each(validation, function (fieldName) {
-                                if (!module.has.field(fieldName)) {
+                                if (!module.has.field(fieldName, true)) {
                                     module.verbose('Field not found, removing from validation', fieldName);
                                     module.remove.field(fieldName);
                                 }
@@ -9644,8 +9646,8 @@
                                             module.save.remoteData(selectedText, selectedValue);
                                         }
                                         if (settings.useLabels) {
-                                            module.add.value(selectedValue, selectedText, $selected, preventChangeTrigger);
                                             module.add.label(selectedValue, selectedText, shouldAnimate);
+                                            module.add.value(selectedValue, selectedText, $selected, preventChangeTrigger);
                                             module.set.activeItem($selected);
                                             module.filterActive();
                                             module.select.nextAvailable($selectedItem);
