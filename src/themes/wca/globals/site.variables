@@ -5,11 +5,24 @@
 /*-------------------
        Fonts
 --------------------*/
-@wcaFontPath       : '../../themes/wca/assets';
-@fontName          : 'Roboto';
-@fontSmoothing     : antialiased;
-@importGoogleFonts : false;
+@fontPath: "../../themes/wca/assets";
+@fontName: 'Roboto';
+@fontFileName: 'roboto';
+@fontSmoothing: antialiased;
+@importGoogleFonts: false;
 
+@importFonts: true;
+
+@fonts: {
+  @regular: {
+    font-family: @fontName;
+    src: url("@{fontPath}/@{fontFileName}.woff2") format("woff2") if(@supportIE, e(",") url("@{fontPath}/@{fontFileName}.woff") format("woff"));
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    text-rendering: optimizeLegibility;
+  };
+};
 
 /*-------------------
       Base Sizes
